@@ -3,12 +3,13 @@ FROM ruby:3.2.2-slim as base
 WORKDIR /rails
 
 ARG DATABASE_URL
+ARG SECRET_KEY_BASE
 
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
-    SECRET_KEY_BASE="dummy" \
+    SECRET_KEY_BASE=$SECRET_KEY_BASE \
     DATABASE_URL=$DATABASE_URL
 
 FROM base as build
